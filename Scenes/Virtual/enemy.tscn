@@ -5,3 +5,4 @@
 
 [node name="Enemy" groups=["enemy"] instance=ExtResource("1_ecsq5")]
 script = ExtResource("2_6iojk")
+speed = 100.0

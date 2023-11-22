@@ -33,6 +33,7 @@ func handle_animation(delta):
 
 func _on_hitbox_body_entered(body):
 	if body != self:
+		print(body, "has been hit!")
 		hit_body.emit(body)
 	pass # Replace with function body.
 

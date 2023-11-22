@@ -23,6 +23,7 @@ func handle_flip():
 		flip()
 	if not $Marker2D/FloorCast.is_colliding() and is_on_floor():
 		flip()
+		
 func flip():
 	facing_right = !facing_right
 	$Sprite2D.flip_h = !$Sprite2D.flip_h

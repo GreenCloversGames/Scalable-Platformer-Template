@@ -95,6 +95,7 @@ sprite_frames = SubResource("SpriteFrames_dkb7f")
 animation = &"fall"
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
+zoom = Vector2(2, 2)
 
 [node name="Timers" type="Node" parent="." index="3"]
 

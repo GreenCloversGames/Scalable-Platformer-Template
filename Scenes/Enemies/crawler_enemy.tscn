@@ -11,8 +11,6 @@ size = Vector2(31, 22)
 size = Vector2(33.5, 20)
 
 [node name="CrawlerEnemy" instance=ExtResource("1_3usj6")]
-collision_layer = 1
-collision_mask = 1
 script = ExtResource("2_vob1e")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
@@ -22,10 +20,6 @@ flip_h = true
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(5.5, 3)
 shape = SubResource("RectangleShape2D_dd41j")
-
-[node name="Hitbox" parent="." index="2"]
-collision_layer = 1
-collision_mask = 1
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(5.75, 4)
