@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://u2fh1xedqj88"]
+
+[ext_resource type="Script" path="res://Scenes/Virtual/interactable.gd" id="1_w2t8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7ihv"]
+size = Vector2(70, 70)
+
+[node name="Area2D" type="Area2D" groups=["interactable"]]
+script = ExtResource("1_w2t8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+shape = SubResource("RectangleShape2D_l7ihv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

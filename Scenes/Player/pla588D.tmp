@@ -1,0 +1,83 @@
+[gd_scene load_steps=15 format=3 uid="uid://dk6a56e3n3mbc"]
+
+[ext_resource type="PackedScene" uid="uid://cupi7qpibwqb1" path="res://Scenes/Virtual/actor.tscn" id="1_xtkr7"]
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="2_5gwpl"]
+[ext_resource type="Texture2D" uid="uid://cbc0u4raftue6" path="res://Assets/Player/p1_stand.png" id="3_bkssa"]
+[ext_resource type="Texture2D" uid="uid://bsaxjqyg8la07" path="res://Assets/Player/p1_walk/p1_walk01.png" id="4_ov4l0"]
+[ext_resource type="Texture2D" uid="uid://b2dk0thfml85w" path="res://Assets/Player/p1_walk/p1_walk02.png" id="5_tiepq"]
+[ext_resource type="Texture2D" uid="uid://dj0457f7f6a2m" path="res://Assets/Player/p1_walk/p1_walk03.png" id="6_2mlv0"]
+[ext_resource type="Texture2D" uid="uid://ck0myu6i6k6tq" path="res://Assets/Player/p1_walk/p1_walk04.png" id="7_kjal2"]
+[ext_resource type="Texture2D" uid="uid://d2y7j5vk11wgg" path="res://Assets/Player/p1_walk/p1_walk05.png" id="8_l32pm"]
+[ext_resource type="Texture2D" uid="uid://dvrsrkyuu4to3" path="res://Assets/Player/p1_walk/p1_walk06.png" id="9_q2yl5"]
+[ext_resource type="Texture2D" uid="uid://c4uftb3phpsfy" path="res://Assets/Player/p1_walk/p1_walk07.png" id="10_cxfx5"]
+[ext_resource type="Texture2D" uid="uid://b210b2hdr0bjm" path="res://Assets/Player/p1_walk/p1_walk10.png" id="11_djo24"]
+[ext_resource type="Texture2D" uid="uid://cgcxsn1pwxfiy" path="res://Assets/Player/p1_walk/p1_walk11.png" id="12_xmdyi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wnxe"]
+radius = 28.0
+height = 94.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dkb7f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bkssa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ov4l0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tiepq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2mlv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kjal2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_l32pm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_q2yl5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cxfx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_djo24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xmdyi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[node name="Player" instance=ExtResource("1_xtkr7")]
+script = ExtResource("2_5gwpl")
+friction = 0.1
+acceleration = 0.25
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_7wnxe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_dkb7f")
+animation = &"walk"
+frame_progress = 0.445772
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+
+[node name="Timers" type="Node" parent="." index="3"]
+
+[node name="CoyoteTimer" type="Timer" parent="Timers" index="0"]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="Timers/CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

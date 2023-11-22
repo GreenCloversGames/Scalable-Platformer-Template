@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cupi7qpibwqb1"]
+
+[ext_resource type="Script" path="res://Scenes/Virtual/actor.gd" id="1_cwcnl"]
+
+[node name="Actor" type="CharacterBody2D" groups=["actor"]]
+script = ExtResource("1_cwcnl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
