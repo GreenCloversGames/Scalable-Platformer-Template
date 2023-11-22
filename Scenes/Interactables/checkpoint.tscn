@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://de5utrueqtaqj"]
+
+[ext_resource type="PackedScene" uid="uid://u2fh1xedqj88" path="res://Scenes/Virtual/interactable.tscn" id="1_bpglg"]
+[ext_resource type="Script" path="res://Scenes/Interactables/checkpoint.gd" id="2_sqdvw"]
+[ext_resource type="Texture2D" uid="uid://ufirbd8hjxfx" path="res://Assets/tochLit2.png" id="3_ib6wh"]
+[ext_resource type="Texture2D" uid="uid://cc3x1o2ysj4ft" path="res://Assets/torch.png" id="4_2qjlm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2j4f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ib6wh")
+}],
+"loop": true,
+"name": &"active",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_2qjlm")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[node name="Checkpoint" instance=ExtResource("1_bpglg")]
+script = ExtResource("2_sqdvw")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_w2j4f")
+animation = &"inactive"

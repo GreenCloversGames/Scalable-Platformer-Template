@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6n2e6kkf0hqu"]
+
+[ext_resource type="PackedScene" uid="uid://b2w20xqwbx54i" path="res://Scenes/Virtual/enemy.tscn" id="1_3usj6"]
+[ext_resource type="Texture2D" uid="uid://dkp58stu7khgm" path="res://Assets/Enemies/Drifter/slimeWalk1.png" id="2_cy8ya"]
+[ext_resource type="Script" path="res://Scenes/Enemies/crawler_enemy.gd" id="2_vob1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd41j"]
+size = Vector2(31, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdibw"]
+size = Vector2(33.5, 20)
+
+[node name="CrawlerEnemy" instance=ExtResource("1_3usj6")]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("2_vob1e")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_cy8ya")
+flip_h = true
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(5.5, 3)
+shape = SubResource("RectangleShape2D_dd41j")
+
+[node name="Hitbox" parent="." index="2"]
+collision_layer = 1
+collision_mask = 1
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(5.75, 4)
+shape = SubResource("RectangleShape2D_fdibw")
+
+[node name="WallCast" type="RayCast2D" parent="." index="3"]
+target_position = Vector2(27, 0)
+
+[node name="Marker2D" type="Marker2D" parent="." index="4"]
+
+[node name="FloorCast" type="RayCast2D" parent="Marker2D" index="0"]
+position = Vector2(25, 0)
+target_position = Vector2(0, 20)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://boic0ihw3y8wu"]
+[gd_scene load_steps=4 format=3 uid="uid://boic0ihw3y8wu"]
 
 [ext_resource type="PackedScene" uid="uid://u2fh1xedqj88" path="res://Scenes/Virtual/interactable.tscn" id="1_86bcg"]
+[ext_resource type="Script" path="res://Scenes/Interactables/exit.gd" id="2_l8w7l"]
 [ext_resource type="Texture2D" uid="uid://b2y3e14ffi8u1" path="res://Assets/signExit.png" id="2_vixf7"]
 
 [node name="Exit" groups=["exit"] instance=ExtResource("1_86bcg")]
+script = ExtResource("2_l8w7l")
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_vixf7")

@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 project/assembly_name="Platformer Template"
 
+[layer_names]
+
+2d_physics/layer_1="level"
+2d_physics/layer_2="actors"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

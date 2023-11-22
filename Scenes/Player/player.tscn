@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dk6a56e3n3mbc"]
+[gd_scene load_steps=18 format=3 uid="uid://dk6a56e3n3mbc"]
 
 [ext_resource type="PackedScene" uid="uid://cupi7qpibwqb1" path="res://Scenes/Virtual/actor.tscn" id="1_xtkr7"]
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="2_5gwpl"]
@@ -78,6 +78,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvbrh"]
+size = Vector2(36, 22)
+
 [node name="Player" groups=["player"] instance=ExtResource("1_xtkr7")]
 script = ExtResource("2_5gwpl")
 coyote_time_frames = 3
@@ -97,5 +100,9 @@ animation = &"fall"
 
 [node name="CoyoteTimer" type="Timer" parent="Timers" index="0"]
 unique_name_in_owner = true
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 45)
+shape = SubResource("RectangleShape2D_xvbrh")
 
 [connection signal="timeout" from="Timers/CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

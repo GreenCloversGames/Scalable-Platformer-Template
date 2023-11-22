@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://vsxauni78yw6"]
+[gd_scene load_steps=11 format=3 uid="uid://vsxauni78yw6"]
 
 [ext_resource type="Texture2D" uid="uid://c8rpy8gjxvv2l" path="res://Assets/tiles_sheet.png" id="1_66odv"]
 [ext_resource type="Script" path="res://Scenes/Virtual/BaseLevel.gd" id="1_gi0ax"]
 [ext_resource type="PackedScene" uid="uid://dk6a56e3n3mbc" path="res://Scenes/Player/player.tscn" id="2_2wr2r"]
 [ext_resource type="PackedScene" uid="uid://boic0ihw3y8wu" path="res://Scenes/Interactables/exit.tscn" id="3_24241"]
+[ext_resource type="PackedScene" uid="uid://de5utrueqtaqj" path="res://Scenes/Interactables/checkpoint.tscn" id="5_t4l8f"]
+[ext_resource type="PackedScene" uid="uid://b6n2e6kkf0hqu" path="res://Scenes/Enemies/crawler_enemy.tscn" id="6_3c4nd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6pwhb"]
 texture = ExtResource("1_66odv")
@@ -86,14 +88,22 @@ texture_region_size = Vector2i(70, 70)
 9:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-35, -35, 35, -35, 35, 35, -35, 35)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_muqlf"]
+resource_name = "Tiles"
 scenes/1/scene = ExtResource("3_24241")
 scenes/2/scene = ExtResource("2_2wr2r")
+scenes/3/scene = ExtResource("5_t4l8f")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3eqbe"]
+resource_name = "Enemies"
+scenes/1/scene = ExtResource("6_3c4nd")
 
 [sub_resource type="TileSet" id="TileSet_2ptkc"]
 tile_size = Vector2i(70, 70)
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_6pwhb")
 sources/1 = SubResource("TileSetScenesCollectionSource_muqlf")
+sources/2 = SubResource("TileSetScenesCollectionSource_3eqbe")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gi0ax")
