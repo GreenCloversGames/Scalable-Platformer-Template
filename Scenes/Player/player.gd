@@ -10,9 +10,12 @@ extends Actor
 
 var  can_jump = true
 
+signal player_lost_all_health
+
 func _ready():
 	super()
 	%CoyoteTimer.wait_time = (coyote_time_frames/1)
+	SceneTrainsition.target = self
 
 
 func handle_animation(delta):
@@ -51,7 +54,8 @@ func handle_physics(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 
-
+func take_hit():
+	player_lost_all_health.emit()
 
 func _on_coyote_timer_timeout():
 	if not is_on_floor():

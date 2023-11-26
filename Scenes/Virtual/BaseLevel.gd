@@ -48,7 +48,7 @@ func _on_tile_map_child_entered_tree(node):
 		node.player_touched.connect(on_player_touched.bind(node))
 	elif node.is_in_group("player"):
 		player = node
-		
+		player.player_lost_all_health.connect(respawn)
 	if node.is_in_group("actor"):
 		node as Actor
 		node.hit_body.connect(_on_hit_body)

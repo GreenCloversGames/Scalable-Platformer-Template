@@ -15,6 +15,11 @@ run/main_scene="res://Scenes/Levels/test_level.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneTrainsition="*res://Scenes/Autoloads/scene_trainsition.tscn"
+LevelHandler="*res://Scenes/Autoloads/LevelHandler.gd"
+
 [dotnet]
 
 project/assembly_name="Platformer Template"
