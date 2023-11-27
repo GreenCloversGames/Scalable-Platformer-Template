@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vsxauni78yw6"]
+[gd_scene load_steps=12 format=3 uid="uid://vsxauni78yw6"]
 
 [ext_resource type="Texture2D" uid="uid://c8rpy8gjxvv2l" path="res://Assets/tiles_sheet.png" id="1_66odv"]
 [ext_resource type="Script" path="res://Scenes/Virtual/BaseLevel.gd" id="1_gi0ax"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://boic0ihw3y8wu" path="res://Scenes/Interactables/exit.tscn" id="3_24241"]
 [ext_resource type="PackedScene" uid="uid://de5utrueqtaqj" path="res://Scenes/Interactables/checkpoint.tscn" id="5_t4l8f"]
 [ext_resource type="PackedScene" uid="uid://b6n2e6kkf0hqu" path="res://Scenes/Enemies/crawler_enemy.tscn" id="6_3c4nd"]
+[ext_resource type="PackedScene" uid="uid://c1bq0xi4a0k6s" path="res://Scenes/Interactables/collectable.tscn" id="6_nawf6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6pwhb"]
 texture = ExtResource("1_66odv")
@@ -92,6 +93,7 @@ resource_name = "Tiles"
 scenes/1/scene = ExtResource("3_24241")
 scenes/2/scene = ExtResource("2_2wr2r")
 scenes/3/scene = ExtResource("5_t4l8f")
+scenes/4/scene = ExtResource("6_nawf6")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3eqbe"]
 resource_name = "Enemies"
@@ -107,6 +109,7 @@ sources/2 = SubResource("TileSetScenesCollectionSource_3eqbe")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gi0ax")
+next_level = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2ptkc")

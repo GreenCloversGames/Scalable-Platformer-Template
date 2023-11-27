@@ -71,3 +71,5 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_t3gaf")
 }
+
+[connection signal="animation_finished" from="SceneTransition/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

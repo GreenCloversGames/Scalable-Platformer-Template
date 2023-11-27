@@ -5,6 +5,8 @@ class_name BaseLevel
 
 var current_checkpoint:Checkpoint
 
+var levelscore = 0
+
 var player 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,12 +18,16 @@ func on_player_touched(node:Interactable):
 		exit_level()
 	elif node is Checkpoint:
 		activate_checkpoint(node)
+	elif node is Collectable:
+		node.collect()
+		levelscore += 100
 	pass
 
 #Methods called by interactables/enemies
 
 func exit_level():
-	get_tree().change_scene_to_file(next_level)
+	
+	LevelHandler.exit_level()
 
 func activate_checkpoint(node):
 	if current_checkpoint:
@@ -51,8 +57,9 @@ func _on_tile_map_child_entered_tree(node):
 		player.player_lost_all_health.connect(respawn)
 	if node.is_in_group("actor"):
 		node as Actor
-		node.hit_body.connect(_on_hit_body)
+		node.hit_body.connect(_on_hit_body.bind(node))
 	pass # Replace with function body.
 
-func _on_hit_body(body:Actor):
-	body.take_hit()
+func _on_hit_body(hitbody:Actor, hitter:Actor):
+	hitbody.take_hit(hitter)
+	hitter.react_to_hitting(hitbody)

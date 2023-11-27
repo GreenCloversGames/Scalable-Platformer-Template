@@ -37,6 +37,9 @@ func _on_hitbox_body_entered(body):
 		hit_body.emit(body)
 	pass # Replace with function body.
 
-func take_hit():
+func take_hit(hitter):
 	queue_free()
+	pass
+
+func react_to_hitting(hitbody):
 	pass

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dk6a56e3n3mbc"]
+[gd_scene load_steps=20 format=3 uid="uid://dk6a56e3n3mbc"]
 
 [ext_resource type="PackedScene" uid="uid://cupi7qpibwqb1" path="res://Scenes/Virtual/actor.tscn" id="1_xtkr7"]
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="2_5gwpl"]
@@ -15,9 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://b210b2hdr0bjm" path="res://Assets/Player/p1_walk/p1_walk10.png" id="11_djo24"]
 [ext_resource type="Texture2D" uid="uid://cgcxsn1pwxfiy" path="res://Assets/Player/p1_walk/p1_walk11.png" id="12_xmdyi"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7wnxe"]
-radius = 28.0
-height = 94.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbkd8"]
+size = Vector2(38, 89)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dkb7f"]
 animations = [{
@@ -35,6 +34,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dxnfb")
+}],
+"loop": true,
+"name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
@@ -81,6 +88,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xvbrh"]
 size = Vector2(36, 22)
 
+[sub_resource type="Animation" id="Animation_xj5sw"]
+resource_name = "Die"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a07yp"]
+_data = {
+"Die": SubResource("Animation_xj5sw")
+}
+
 [node name="Player" groups=["player"] instance=ExtResource("1_xtkr7")]
 script = ExtResource("2_5gwpl")
 coyote_time_frames = 3
@@ -88,14 +103,16 @@ friction = 0.1
 acceleration = 0.25
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("CapsuleShape2D_7wnxe")
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_jbkd8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_dkb7f")
-animation = &"fall"
+animation = &"hurt"
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 zoom = Vector2(2, 2)
+drag_horizontal_enabled = true
 
 [node name="Timers" type="Node" parent="." index="3"]
 
@@ -105,5 +122,10 @@ unique_name_in_owner = true
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, 45)
 shape = SubResource("RectangleShape2D_xvbrh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_a07yp")
+}
 
 [connection signal="timeout" from="Timers/CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

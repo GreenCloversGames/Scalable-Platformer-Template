@@ -2,9 +2,11 @@ extends CanvasLayer
 
 var target : Node2D 
 
+signal transition_ended
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	transition()
+
 	pass # Replace with function body.
 
 
@@ -12,10 +14,19 @@ func _ready():
 func _process(delta):
 	if !target:
 		return
-	var value_on_screen := target.get_global_transform_with_canvas().origin / get_viewport().get_visible_rect().size
+	var value_on_screen := target.get_global_transform_with_canvas().origin / get_viewport().get_visible_rect().size 
 	var shader_mat = $SceneTransition/ColorRect.material as Material
 	shader_mat.set("shader_parameter/screen_location", value_on_screen)
 	pass
 
-func transition():
+func transition_in():
 	$SceneTransition/AnimationPlayer.play("CircleIn")
+
+func transition_out():
+	$SceneTransition/AnimationPlayer.play("CircleIn")
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "CircleIn":
+		transition_ended.emit()
+	pass # Replace with function body.

@@ -7,6 +7,7 @@ extends Actor
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
 
+var health = 3
 
 var  can_jump = true
 
@@ -54,10 +55,18 @@ func handle_physics(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 
-func take_hit():
-	player_lost_all_health.emit()
+func take_hit(hitter):
+	velocity.x = global_position.direction_to(hitter.global_position).x * JUMP_VELOCITY * 3
+	velocity.y = JUMP_VELOCITY*.5
+	$AnimatedSprite2D.play("hurt")
+	health -= 1
+	if health <= 0:
+		player_lost_all_health.emit()
 
 func _on_coyote_timer_timeout():
 	if not is_on_floor():
 		can_jump = false
 	pass # Replace with function body.
+
+func react_to_hitting(hitbody):
+	velocity.y = JUMP_VELOCITY
