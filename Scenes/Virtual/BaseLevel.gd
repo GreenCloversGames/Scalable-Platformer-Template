@@ -7,11 +7,19 @@ var current_checkpoint:Checkpoint
 
 var levelscore = 0
 
-var player 
+var player : Player
+
+@onready var boundry_rect : Rect2i
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	boundry_rect = Rect2i($TileMap.get_used_rect())
+	boundry_rect = boundry_rect.grow_side(SIDE_TOP, 500)
+#	boundry_rect.size *= $TileMap.tile_set.tile_size
+	after_ready.call_deferred()
 
-	pass # Replace with function body.
+func after_ready():
+	player.set_up_camera_limit(boundry_rect)
+
 
 func on_player_touched(node:Interactable):
 	if node is Exit:
@@ -21,12 +29,10 @@ func on_player_touched(node:Interactable):
 	elif node is Collectable:
 		node.collect()
 		levelscore += 100
-	pass
 
 #Methods called by interactables/enemies
 
 func exit_level():
-	
 	LevelHandler.exit_level()
 
 func activate_checkpoint(node):
@@ -34,7 +40,6 @@ func activate_checkpoint(node):
 		current_checkpoint.active = false
 	current_checkpoint = node
 	current_checkpoint.active = true
-	
 
 func respawn():
 	if current_checkpoint:
@@ -44,21 +49,15 @@ func respawn():
 func _process(delta):
 	pass
 
-
-func _on_tile_map_changed():
-	pass # Replace with function body.
-
-
 func _on_tile_map_child_entered_tree(node):
 	if node.is_in_group("interactable"):
 		node.player_touched.connect(on_player_touched.bind(node))
 	elif node.is_in_group("player"):
-		player = node
+		player = node as Player
 		player.player_lost_all_health.connect(respawn)
 	if node.is_in_group("actor"):
 		node as Actor
 		node.hit_body.connect(_on_hit_body.bind(node))
-	pass # Replace with function body.
 
 func _on_hit_body(hitbody:Actor, hitter:Actor):
 	hitbody.take_hit(hitter)

@@ -47,6 +47,7 @@ _data = {
 }
 
 [node name="CanvasLayer" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_x8ryn")
 
 [node name="SceneTransition" type="Control" parent="."]

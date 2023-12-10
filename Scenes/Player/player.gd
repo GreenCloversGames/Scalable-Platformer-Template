@@ -1,8 +1,14 @@
 extends Actor
+class_name Player
 
 @export var coyote_time_frames = 3;
 
 #Taken from Kids Can Code - https://kidscancode.org/godot_recipes/4.x/2d/platform_character/index.html
+
+@onready var camera :Camera2D = $Camera2D 
+
+
+
 
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
@@ -10,6 +16,8 @@ extends Actor
 var health = 3
 
 var  can_jump = true
+
+
 
 signal player_lost_all_health
 
@@ -63,6 +71,12 @@ func take_hit(hitter):
 	if health <= 0:
 		player_lost_all_health.emit()
 
+func set_up_camera_limit(rect:Rect2i):
+	camera.limit_left = rect.position.x
+	camera.limit_top = rect.position.y
+	camera.limit_right = rect.end.x
+	camera.limit_bottom = rect.end.y
+
 func _on_coyote_timer_timeout():
 	if not is_on_floor():
 		can_jump = false
@@ -70,3 +84,5 @@ func _on_coyote_timer_timeout():
 
 func react_to_hitting(hitbody):
 	velocity.y = JUMP_VELOCITY
+
+

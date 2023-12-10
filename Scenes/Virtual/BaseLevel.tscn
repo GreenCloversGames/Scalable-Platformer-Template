@@ -109,7 +109,6 @@ sources/2 = SubResource("TileSetScenesCollectionSource_3eqbe")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gi0ax")
-next_level = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_2ptkc")
