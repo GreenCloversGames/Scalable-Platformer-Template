@@ -31,11 +31,15 @@ func on_player_touched(node:Interactable):
 		activate_checkpoint(node)
 	elif node is Collectable:
 		node.collect()
-		levelscore += 100
+		update_score(100)
 	elif node is DeathZone:
 		kill_player()
 
 #Methods called by interactables/enemies
+
+func update_score(value):
+	levelscore += value
+	$LevelUI.update_score(levelscore)
 
 func exit_level():
 	LevelHandler.exit_level()
@@ -47,7 +51,7 @@ func activate_checkpoint(node):
 	current_checkpoint.active = true
 
 func kill_player():
-	get_tree().change_scene_to_file("res://Scenes/Levels/test_level.tscn")
+	respawn()
 
 func respawn():
 	if current_checkpoint:
@@ -62,11 +66,15 @@ func _on_tile_map_child_entered_tree(node):
 		node.player_touched.connect(on_player_touched.bind(node))
 	elif node.is_in_group("player"):
 		player = node as Player
+		player.player_lost_health.connect(_on_player_lost_health)
 		player.player_lost_all_health.connect(respawn)
 	if node.is_in_group("actor"):
 		node as Actor
 		node.hit_body.connect(_on_hit_body.bind(node))
 
 func _on_hit_body(hitbody:Actor, hitter:Actor):
-	hitbody.take_hit(hitter)
+	hitbody.take_hit(hitter) 
 	hitter.react_to_hitting(hitbody)
+
+func _on_player_lost_health(new_health):
+	$LevelUI.lose_health()

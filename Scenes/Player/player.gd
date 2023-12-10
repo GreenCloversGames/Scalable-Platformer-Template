@@ -18,7 +18,7 @@ var health = 3
 var  can_jump = true
 
 
-
+signal player_lost_health(new_health)
 signal player_lost_all_health
 
 func _ready():
@@ -68,6 +68,7 @@ func take_hit(hitter):
 	velocity.y = JUMP_VELOCITY*.5
 	$AnimatedSprite2D.play("hurt")
 	health -= 1
+	player_lost_health.emit(health)
 	if health <= 0:
 		player_lost_all_health.emit()
 

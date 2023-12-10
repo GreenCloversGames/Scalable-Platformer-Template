@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://ubm3g25m2mvs"]
+
+[ext_resource type="Script" path="res://Scenes/UI/level_ui.gd" id="1_0wvi5"]
+[ext_resource type="Texture2D" uid="uid://pgvp75401bfx" path="res://Assets/UI/hud_heartFull.png" id="2_s3qdv"]
+[ext_resource type="Theme" uid="uid://dxortrvrvcbys" path="res://Scenes/UI/score.tres" id="3_gqkha"]
+
+[node name="LevelUI" type="CanvasLayer"]
+script = ExtResource("1_0wvi5")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.17284
+grow_horizontal = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/HealthContainer"]
+layout_mode = 2
+text = "Health:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/HBoxContainer/HealthContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Health1" type="TextureRect" parent="Control/HBoxContainer/HealthContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_s3qdv")
+stretch_mode = 5
+
+[node name="Health2" type="TextureRect" parent="Control/HBoxContainer/HealthContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_s3qdv")
+stretch_mode = 5
+
+[node name="Health3" type="TextureRect" parent="Control/HBoxContainer/HealthContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_s3qdv")
+stretch_mode = 5
+
+[node name="ScoreContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/ScoreContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Score:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/ScoreContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_gqkha")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/TimeContainer"]
+layout_mode = 2
+text = "Time:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer/TimeContainer"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
