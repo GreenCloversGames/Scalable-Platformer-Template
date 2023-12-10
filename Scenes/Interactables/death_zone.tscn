@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsa8sgay28e88"]
+
+[ext_resource type="PackedScene" uid="uid://u2fh1xedqj88" path="res://Scenes/Virtual/interactable.tscn" id="1_8giqd"]
+[ext_resource type="Script" path="res://Scenes/Interactables/death_zone.gd" id="2_me76w"]
+
+[node name="DeathZone" instance=ExtResource("1_8giqd")]
+script = ExtResource("2_me76w")
+
+[node name="CollisionShape2D" parent="." index="0"]
+debug_color = Color(0.996078, 0.0509804, 0, 0.419608)
