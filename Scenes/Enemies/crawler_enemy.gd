@@ -26,5 +26,7 @@ func handle_flip():
 		
 func flip():
 	facing_right = !facing_right
-	$Sprite2D.flip_h = !$Sprite2D.flip_h
-	$Marker2D.scale.x *= -1
+	if facing_right:
+		$AnimationPlayer.play("FlipRight")
+	else :
+		$AnimationPlayer.play("FlipLeft")
