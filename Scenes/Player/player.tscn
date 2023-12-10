@@ -112,7 +112,6 @@ animation = &"hurt"
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 limit_smoothed = true
-position_smoothing_enabled = true
 drag_horizontal_enabled = true
 
 [node name="Timers" type="Node" parent="." index="3"]

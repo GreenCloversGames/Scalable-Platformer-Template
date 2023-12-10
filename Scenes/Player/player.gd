@@ -72,7 +72,9 @@ func take_hit(hitter):
 		player_lost_all_health.emit()
 
 func set_up_camera_limit(rect:Rect2i):
-	camera.limit_left = rect.position.x
+	print(rect)
+	rect = rect.abs()
+	camera.limit_left = rect.position.x 
 	camera.limit_top = rect.position.y
 	camera.limit_right = rect.end.x
 	camera.limit_bottom = rect.end.y

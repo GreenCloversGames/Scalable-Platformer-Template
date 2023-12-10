@@ -12,12 +12,15 @@ var player : Player
 @onready var boundry_rect : Rect2i
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	boundry_rect = Rect2i($TileMap.get_used_rect())
-	boundry_rect = boundry_rect.grow_side(SIDE_TOP, 500)
-#	boundry_rect.size *= $TileMap.tile_set.tile_size
+	var cell_size :Vector2i = $TileMap.tile_set.tile_size
+	boundry_rect = Rect2i($TileMap.get_used_rect()).abs()
+#	boundry_rect = boundry_rect.grow_side(SIDE_TOP, 500)
+	boundry_rect.size *= cell_size
+	boundry_rect.position *= cell_size
 	after_ready.call_deferred()
 
 func after_ready():
+	
 	player.set_up_camera_limit(boundry_rect)
 
 
@@ -29,6 +32,8 @@ func on_player_touched(node:Interactable):
 	elif node is Collectable:
 		node.collect()
 		levelscore += 100
+	elif node is DeathZone:
+		kill_player()
 
 #Methods called by interactables/enemies
 
@@ -40,6 +45,9 @@ func activate_checkpoint(node):
 		current_checkpoint.active = false
 	current_checkpoint = node
 	current_checkpoint.active = true
+
+func kill_player():
+	get_tree().change_scene_to_file("res://Scenes/Levels/test_level.tscn")
 
 func respawn():
 	if current_checkpoint:
