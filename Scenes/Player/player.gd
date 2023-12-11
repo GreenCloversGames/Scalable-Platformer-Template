@@ -17,6 +17,9 @@ var health = 3
 
 var jumping = true
 
+#Coyote code based on KIDS CAN CODE
+#https://kidscancode.org/godot_recipes/4.x/2d/coyote_time/index.html
+
 var coyote_frames = 30 # How many in-air frames to allow jumping
 var coyote = false  # Track whether we're in coyote time or not
 
