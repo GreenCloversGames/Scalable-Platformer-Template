@@ -7,6 +7,10 @@ const JUMP_VELOCITY = -550.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+#Get if the Actor was on the floor last frame
+var last_floor = false  # Last frame's on-floor state
+
+
 signal hit_body(body) 
 
 @export var speed = DEFAULT_SPEED
@@ -22,6 +26,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 	handle_physics(delta)
+	last_floor = is_on_floor()
 	move_and_slide()
 
 func handle_physics(delta):

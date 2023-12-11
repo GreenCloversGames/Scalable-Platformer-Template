@@ -15,7 +15,11 @@ class_name Player
 
 var health = 3
 
-var  can_jump = true
+var jumping = true
+
+var coyote_frames = 30 # How many in-air frames to allow jumping
+var coyote = false  # Track whether we're in coyote time or not
+
 
 
 signal player_lost_health(new_health)
@@ -23,7 +27,7 @@ signal player_lost_all_health
 
 func _ready():
 	super()
-	%CoyoteTimer.wait_time = (coyote_time_frames/1)
+	%CoyoteTimer.wait_time = coyote_frames / 60.0
 	SceneTrainsition.target = self
 
 
@@ -44,16 +48,18 @@ func handle_animation(delta):
 			$AnimatedSprite2D.play("fall")
 	
 func handle_physics(delta):
-	
-	if not is_on_floor() and can_jump and %CoyoteTimer.is_stopped():
-		%CoyoteTimer.start()
-		
-	elif is_on_floor():
-		can_jump = true
-	
+	if is_on_floor():
+		jumping = false
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and can_jump:
+	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or coyote):
 		velocity.y = JUMP_VELOCITY
+		jumping = true
+		if coyote:
+			coyote = false
+	
+	if !is_on_floor() and last_floor and !jumping:
+		coyote = true
+		%CoyoteTimer.start()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -81,11 +87,11 @@ func set_up_camera_limit(rect:Rect2i):
 	camera.limit_bottom = rect.end.y
 
 func _on_coyote_timer_timeout():
-	if not is_on_floor():
-		can_jump = false
+	coyote = false
 	pass # Replace with function body.
 
 func react_to_hitting(hitbody):
 	velocity.y = JUMP_VELOCITY
+	jumping = true
 
 
