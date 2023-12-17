@@ -29,10 +29,10 @@ func _physics_process(delta):
 	last_floor = is_on_floor()
 	move_and_slide()
 
-func handle_physics(delta):
+func handle_physics(_delta):
 	pass
 
-func handle_animation(delta):
+func handle_animation(_delta):
 	pass
 
 
@@ -42,9 +42,9 @@ func _on_hitbox_body_entered(body):
 		hit_body.emit(body)
 	pass # Replace with function body.
 
-func take_hit(hitter):
+func take_hit(_hitter):
 	queue_free()
 	pass
 
-func react_to_hitting(hitbody):
+func react_to_hitting(_hitbody):
 	pass

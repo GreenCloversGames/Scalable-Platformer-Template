@@ -11,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if !target:
 		return
 	var value_on_screen := target.get_global_transform_with_canvas().origin / get_viewport().get_visible_rect().size 
@@ -30,3 +30,6 @@ func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "CircleIn":
 		transition_ended.emit()
 	pass # Replace with function body.
+
+
+

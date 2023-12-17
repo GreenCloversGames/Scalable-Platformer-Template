@@ -5,7 +5,7 @@ extends Enemy
 
 var facing_right = true
 
-func handle_physics(delta):
+func handle_physics(_delta):
 
 	handle_flip()
 	# Get the input direction and handle the movement/deceleration.

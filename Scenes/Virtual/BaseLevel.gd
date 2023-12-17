@@ -58,7 +58,7 @@ func respawn():
 		player.global_position = current_checkpoint.global_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_tile_map_child_entered_tree(node):
@@ -69,12 +69,12 @@ func _on_tile_map_child_entered_tree(node):
 		player.player_lost_health.connect(_on_player_lost_health)
 		player.player_lost_all_health.connect(respawn)
 	if node.is_in_group("actor"):
-		node as Actor
+		node = node as Actor
 		node.hit_body.connect(_on_hit_body.bind(node))
 
 func _on_hit_body(hitbody:Actor, hitter:Actor):
 	hitbody.take_hit(hitter) 
 	hitter.react_to_hitting(hitbody)
 
-func _on_player_lost_health(new_health):
+func _on_player_lost_health(_new_health):
 	$LevelUI.lose_health()

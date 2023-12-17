@@ -25,6 +25,3 @@ func lose_health():
 func update_score(new_score):
 	scoreContainer.get_node("Label2").text = str(new_score)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

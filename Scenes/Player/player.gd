@@ -34,7 +34,7 @@ func _ready():
 	SceneTrainsition.target = self
 
 
-func handle_animation(delta):
+func handle_animation(_delta):
 	if is_on_floor():
 		if velocity.x > 5:
 			$AnimatedSprite2D.play("walk")
@@ -50,7 +50,7 @@ func handle_animation(delta):
 		else:
 			$AnimatedSprite2D.play("fall")
 	
-func handle_physics(delta):
+func handle_physics(_delta):
 	if is_on_floor():
 		jumping = false
 	# Handle Jump.
@@ -93,7 +93,7 @@ func _on_coyote_timer_timeout():
 	coyote = false
 	pass # Replace with function body.
 
-func react_to_hitting(hitbody):
+func react_to_hitting(_hitbody):
 	velocity.y = JUMP_VELOCITY
 	jumping = true
 
