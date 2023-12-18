@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://blrnobp0hle1l"]
+[gd_scene load_steps=8 format=3 uid="uid://blrnobp0hle1l"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/transition.gdshader" id="1_1jthl"]
 [ext_resource type="Script" path="res://Scenes/Autoloads/SceneTrainsition.gd" id="1_x8ryn"]
@@ -40,9 +40,26 @@ tracks/0/keys = {
 "values": [1.0]
 }
 
+[sub_resource type="Animation" id="Animation_71hjj"]
+resource_name = "CircleOut"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/radi")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.1, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t3gaf"]
 _data = {
 "CircleIn": SubResource("Animation_1ht11"),
+"CircleOut": SubResource("Animation_71hjj"),
 "RESET": SubResource("Animation_2ddkc")
 }
 

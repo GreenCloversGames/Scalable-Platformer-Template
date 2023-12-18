@@ -18,6 +18,8 @@ func _ready():
 	boundry_rect.size *= cell_size
 	boundry_rect.position *= cell_size
 	after_ready.call_deferred()
+	LevelHandler.next_level_path = next_level
+	LevelHandler.current_level = self
 
 func after_ready():
 	

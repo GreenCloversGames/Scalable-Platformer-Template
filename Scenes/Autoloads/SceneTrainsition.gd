@@ -23,7 +23,7 @@ func transition_in():
 	$SceneTransition/AnimationPlayer.play("CircleIn")
 
 func transition_out():
-	$SceneTransition/AnimationPlayer.play("CircleIn")
+	$SceneTransition/AnimationPlayer.play("CircleOut")
 
 
 func _on_animation_player_animation_finished(anim_name):
