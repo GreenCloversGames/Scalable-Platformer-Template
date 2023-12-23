@@ -1,5 +1,7 @@
 # Scalable Platformer Template
 
+<p align="center"><img src="Marketing/logo.png"/></p>
+
 This template is designed to help users create 2D platformers in Godot quickly and easily using the improved Tilemap system of Godot 4, 
 especially the ability to place scenes. The goal is for this to be both a beginner-friendly template to support new developers or
 those who aren't too comfortable with coding while also providing a base for more experienced developers who want to quickly create
