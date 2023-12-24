@@ -1,7 +1,12 @@
 extends Node
 
 var current_level : Node
-var next_level_path
+
+var current_level_index := -1
+
+var next_level_path 
+
+@export var levels : Array[LevelResource]
 
 func load_level(level_path):
 	get_tree().change_scene_to_file(level_path)
