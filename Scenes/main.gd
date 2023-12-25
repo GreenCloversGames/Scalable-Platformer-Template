@@ -3,18 +3,14 @@ extends Node
 var current_scene : Node
 
 @onready var level_select_scene = preload("res://Scenes/UI/Menus/level_select.tscn")
+@onready var main_menu_scene = preload("res://Scenes/UI/Menus/main_menu.tscn")
 
 @onready var levels = preload("res://Resources/level_collection.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	change_to_level_selection()
+	change_to_main_menu()
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func change_scene(new_parent: Node, new_child: Node):
 	if current_scene:
@@ -34,3 +30,9 @@ func change_to_level_selection():
 	change_to_menu(scene)
 	scene.level_selected.connect(change_to_level)
 	scene.add_all_levels(levels)
+
+func change_to_main_menu():
+	var menu = main_menu_scene.instantiate()
+	change_to_menu(menu)
+	menu.play_pressed.connect(change_to_level.bind(levels.get_current_level()))
+	menu.level_select_pressed.connect(change_to_level_selection)

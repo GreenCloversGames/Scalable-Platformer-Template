@@ -19,10 +19,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
-layout_mode = 2
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0946181
+anchor_top = 0.140432
+anchor_right = 0.905382
+anchor_bottom = 0.859568
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="LevelGrid" type="GridContainer" parent="PanelContainer/MarginContainer"]
+[node name="LevelGrid" type="GridContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 columns = 3
