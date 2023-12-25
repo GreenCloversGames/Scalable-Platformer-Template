@@ -42,6 +42,8 @@ move_right={
 
 2d_physics/layer_1="level"
 2d_physics/layer_2="actors"
+2d_physics/layer_3="enemy"
+2d_physics/layer_4="player"
 
 [rendering]
 
