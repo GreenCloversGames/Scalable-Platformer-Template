@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneTrainsition="*res://Scenes/Autoloads/scene_trainsition.tscn"
-LevelHandler="*res://Scenes/Autoloads/LevelHandler.gd"
 
 [dotnet]
 

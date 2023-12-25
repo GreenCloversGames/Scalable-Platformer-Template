@@ -1,13 +1,12 @@
 extends Node2D
 class_name BaseLevel
 
-@export_file var next_level = "res://Scenes/Virtual/BaseLevel.tscn"
-
 var current_checkpoint:Checkpoint
 
+var level_resource : LevelResource
 var levelscore = 0
-
 var player : Player
+signal level_ended
 
 @onready var boundry_rect : Rect2i
 # Called when the node enters the scene tree for the first time.
@@ -18,11 +17,9 @@ func _ready():
 	boundry_rect.size *= cell_size
 	boundry_rect.position *= cell_size
 	after_ready.call_deferred()
-	LevelHandler.next_level_path = next_level
-	LevelHandler.current_level = self
+	
 
 func after_ready():
-	
 	player.set_up_camera_limit(boundry_rect)
 
 
@@ -44,7 +41,7 @@ func update_score(value):
 	$LevelUI.update_score(levelscore)
 
 func exit_level():
-	LevelHandler.exit_level()
+	level_ended.emit()
 
 func activate_checkpoint(node):
 	if current_checkpoint:

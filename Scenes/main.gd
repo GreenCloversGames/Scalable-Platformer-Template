@@ -19,8 +19,11 @@ func change_scene(new_parent: Node, new_child: Node):
 	current_scene = new_child
 
 func change_to_level(new_level: LevelResource):
-	var level_to_load : PackedScene = new_level.level_scene 
-	change_scene($LevelHolder, level_to_load.instantiate())
+	var level_scene : PackedScene = new_level.level_scene 
+	var level_to_load : BaseLevel = level_scene.instantiate()
+	change_scene($LevelHolder, level_to_load)
+	levels.increase_level_index()
+	level_to_load.level_ended.connect(change_to_level.bind(levels.get_current_level()))
 
 func change_to_menu(new_menu_scene: Node):
 	change_scene($MenuHolder, new_menu_scene)
