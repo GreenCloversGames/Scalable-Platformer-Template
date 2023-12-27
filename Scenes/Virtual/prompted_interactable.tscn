@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://cih0knhrxl1pe"]
+
+[ext_resource type="PackedScene" uid="uid://u2fh1xedqj88" path="res://Scenes/Virtual/interactable.tscn" id="1_0v6rv"]
+[ext_resource type="Script" path="res://Scenes/Virtual/prompted_interactable.gd" id="2_o2k4h"]
+
+[node name="PromptedInteractable" instance=ExtResource("1_0v6rv")]
+script = ExtResource("2_o2k4h")
+prompt_action = "interact"
+
+[node name="Prompt" type="Control" parent="." index="1"]
+visible = false
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -75.0
+offset_right = 20.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Prompt" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.075
+anchor_top = 0.05
+anchor_right = 2.075
+anchor_bottom = 1.275
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Press Interact to interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
