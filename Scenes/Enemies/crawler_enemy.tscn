@@ -12,6 +12,7 @@ size = Vector2(33.5, 20)
 
 [sub_resource type="Animation" id="Animation_h7aoi"]
 resource_name = "FlipLeft"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,6 +88,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_d4uvs"]
 resource_name = "FlipRight"
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -259,6 +261,7 @@ shape = SubResource("RectangleShape2D_fdibw")
 
 [node name="WallCast" type="RayCast2D" parent="." index="3"]
 target_position = Vector2(27, 0)
+collision_mask = 5
 
 [node name="Marker2D" type="Marker2D" parent="." index="4"]
 

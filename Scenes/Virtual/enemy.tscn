@@ -14,3 +14,4 @@ collision_layer = 6
 collision_mask = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+callback_mode_process = 2

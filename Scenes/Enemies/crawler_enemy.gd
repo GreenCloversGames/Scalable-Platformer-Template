@@ -6,27 +6,28 @@ extends Enemy
 var facing_right = true
 
 func handle_physics(_delta):
-
 	handle_flip()
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = 1 if facing_right else -1
 	if direction:
 		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-
-	move_and_slide()
+		velocity.x = 0
+	
 
 func handle_flip():
+	var flipped = false
 	if $WallCast.is_colliding():
-		flip()
+		flipped = true
 	if not $Marker2D/FloorCast.is_colliding() and is_on_floor():
+		flipped = true
+	
+	if flipped:
 		flip()
-		
+
 func flip():
 	facing_right = !facing_right
 	if facing_right:
 		$AnimationPlayer.play("FlipRight")
 	else :
 		$AnimationPlayer.play("FlipLeft")
+	$AnimationPlayer.advance(.001)
