@@ -30,4 +30,4 @@ func flip():
 		$AnimationPlayer.play("FlipRight")
 	else :
 		$AnimationPlayer.play("FlipLeft")
-	$AnimationPlayer.advance(.001)
+	$AnimationPlayer.advance(0)
