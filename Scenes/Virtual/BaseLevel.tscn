@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://vsxauni78yw6"]
+[gd_scene load_steps=16 format=3 uid="uid://vsxauni78yw6"]
 
 [ext_resource type="Script" path="res://Scenes/Virtual/BaseLevel.gd" id="1_gi0ax"]
 [ext_resource type="PackedScene" uid="uid://dk6a56e3n3mbc" path="res://Scenes/Player/player.tscn" id="2_2wr2r"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b6n2e6kkf0hqu" path="res://Scenes/Enemies/crawler_enemy.tscn" id="6_3c4nd"]
 [ext_resource type="PackedScene" uid="uid://c1bq0xi4a0k6s" path="res://Scenes/Interactables/collectable.tscn" id="6_nawf6"]
 [ext_resource type="PackedScene" uid="uid://bsa8sgay28e88" path="res://Scenes/Interactables/death_zone.tscn" id="7_0fme4"]
+[ext_resource type="PackedScene" uid="uid://dgq8aqvhj6bte" path="res://Scenes/Interactables/crate.tscn" id="8_vveao"]
 [ext_resource type="PackedScene" uid="uid://bhgdgjy2jxwjs" path="res://Scenes/Enemies/flyer_enemy.tscn" id="9_ixmm2"]
 [ext_resource type="PackedScene" uid="uid://ubm3g25m2mvs" path="res://Scenes/UI/level_ui.tscn" id="9_ksn3r"]
 
@@ -493,6 +494,7 @@ scenes/2/scene = ExtResource("2_2wr2r")
 scenes/3/scene = ExtResource("5_t4l8f")
 scenes/4/scene = ExtResource("6_nawf6")
 scenes/5/scene = ExtResource("7_0fme4")
+scenes/6/scene = ExtResource("8_vveao")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3eqbe"]
 resource_name = "Enemies"

@@ -63,6 +63,7 @@ func handle_physics(_delta):
 	if !is_on_floor() and last_floor and !jumping:
 		coyote = true
 		%CoyoteTimer.start()
+	
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.

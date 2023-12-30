@@ -10,6 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #Get if the Actor was on the floor last frame
 var last_floor = false  # Last frame's on-floor state
 
+var last_velocity : Vector2
+
 
 signal hit_body(body) 
 
@@ -23,10 +25,12 @@ func _process(delta):
 
 func _physics_process(delta):
 	# Add the gravity.
+	last_velocity = velocity
 	handle_gravity(delta)
 	handle_physics(delta)
 	last_floor = is_on_floor()
 	move_and_slide()
+	handle_cols()
 
 func handle_physics(_delta):
 	pass
@@ -37,6 +41,13 @@ func handle_animation(_delta):
 func handle_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
+
+func handle_cols():
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * last_velocity.abs()*.1)
+
 
 func _on_hitbox_body_entered(body):
 	if body != self:

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgq8aqvhj6bte"]
+
+[ext_resource type="PackedScene" uid="uid://cj44au4iela57" path="res://Scenes/Virtual/physics_moveable.tscn" id="1_g8u7f"]
+[ext_resource type="Texture2D" uid="uid://c8rpy8gjxvv2l" path="res://Assets/Tiles/tiles_sheet.png" id="2_a7gkd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kpi2q"]
+friction = 0.8
+absorbent = true
+
+[node name="PhysicsMoveable" instance=ExtResource("1_g8u7f")]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_kpi2q")
+angular_damp_mode = 1
+angular_damp = 100.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_a7gkd")
+region_enabled = true
+region_rect = Rect2(0, 0, 70, 70)
