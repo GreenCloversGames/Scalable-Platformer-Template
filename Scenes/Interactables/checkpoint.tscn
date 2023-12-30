@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://u2fh1xedqj88" path="res://Scenes/Virtual/interactable.tscn" id="1_bpglg"]
 [ext_resource type="Script" path="res://Scenes/Interactables/checkpoint.gd" id="2_sqdvw"]
-[ext_resource type="Texture2D" uid="uid://ufirbd8hjxfx" path="res://Assets/tochLit2.png" id="3_ib6wh"]
-[ext_resource type="Texture2D" uid="uid://cc3x1o2ysj4ft" path="res://Assets/torch.png" id="4_2qjlm"]
+[ext_resource type="Texture2D" uid="uid://ufirbd8hjxfx" path="res://Assets/Tiles/tochLit2.png" id="3_ib6wh"]
+[ext_resource type="Texture2D" uid="uid://cc3x1o2ysj4ft" path="res://Assets/Tiles/torch.png" id="4_2qjlm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w2j4f"]
 animations = [{

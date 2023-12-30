@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://bhgdgjy2jxwjs"]
+
+[ext_resource type="PackedScene" uid="uid://b2w20xqwbx54i" path="res://Scenes/Virtual/enemy.tscn" id="1_2iu60"]
+[ext_resource type="Texture2D" uid="uid://bqi14ykvo1wyu" path="res://Assets/Enemies/Flyer/flyFly1.png" id="2_qk3cf"]
+[ext_resource type="Script" path="res://Scenes/Enemies/flyer_enemy.gd" id="2_xkrxf"]
+[ext_resource type="Texture2D" uid="uid://cs4bwgwphy63y" path="res://Assets/Enemies/Flyer/flyFly2.png" id="3_jeer3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w8nu4"]
+radius = 18.2483
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbwna"]
+radius = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8j2mf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qk3cf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jeer3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7112u"]
+radius = 246.0
+
+[node name="FlyerEnemy" instance=ExtResource("1_2iu60")]
+collision_mask = 14
+script = ExtResource("2_xkrxf")
+speed = 300.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_w8nu4")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_hbwna")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_8j2mf")
+frame_progress = 0.70243
+
+[node name="TargetRange" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetRange" index="0"]
+shape = SubResource("CircleShape2D_7112u")
+
+[connection signal="body_entered" from="TargetRange" to="." method="_on_target_range_body_entered"]
+[connection signal="body_exited" from="TargetRange" to="." method="_on_target_range_body_exited"]

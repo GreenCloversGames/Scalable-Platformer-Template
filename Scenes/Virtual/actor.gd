@@ -23,8 +23,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	handle_gravity(delta)
 	handle_physics(delta)
 	last_floor = is_on_floor()
 	move_and_slide()
@@ -35,6 +34,9 @@ func handle_physics(_delta):
 func handle_animation(_delta):
 	pass
 
+func handle_gravity(delta):
+	if not is_on_floor():
+		velocity.y += gravity * delta
 
 func _on_hitbox_body_entered(body):
 	if body != self:

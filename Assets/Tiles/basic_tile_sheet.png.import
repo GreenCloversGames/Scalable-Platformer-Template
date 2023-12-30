@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ufirbd8hjxfx"
-path="res://.godot/imported/tochLit2.png-ca880b47f536382e640911fdacf6e3ff.ctex"
+uid="uid://cowsdnrvgkfje"
+path="res://.godot/imported/basic_tile_sheet.png-04e8464f70c9392fbba4ffafe9ef5f82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tochLit2.png"
-dest_files=["res://.godot/imported/tochLit2.png-ca880b47f536382e640911fdacf6e3ff.ctex"]
+source_file="res://Assets/Tiles/basic_tile_sheet.png"
+dest_files=["res://.godot/imported/basic_tile_sheet.png-04e8464f70c9392fbba4ffafe9ef5f82.ctex"]
 
 [params]
 

@@ -74,7 +74,8 @@ func handle_physics(_delta):
 
 func take_hit(hitter):
 	velocity.x = global_position.direction_to(hitter.global_position).x * JUMP_VELOCITY * 3
-	velocity.y = JUMP_VELOCITY*.5
+	if is_on_floor():
+		velocity.y = JUMP_VELOCITY*.5
 	$AnimatedSprite2D.play("hurt")
 	health -= 1
 	player_lost_health.emit(health)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2y3e14ffi8u1"
-path="res://.godot/imported/signExit.png-3125245ac7a01f930f8ae95a82b419ea.ctex"
+uid="uid://br8awiix1ilki"
+path="res://.godot/imported/tochLit.png-156e1e6047daf4b0227f9d259763dd7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/signExit.png"
-dest_files=["res://.godot/imported/signExit.png-3125245ac7a01f930f8ae95a82b419ea.ctex"]
+source_file="res://Assets/Tiles/tochLit.png"
+dest_files=["res://.godot/imported/tochLit.png-156e1e6047daf4b0227f9d259763dd7e.ctex"]
 
 [params]
 

@@ -246,6 +246,7 @@ _data = {
 
 [node name="CrawlerEnemy" instance=ExtResource("1_3usj6")]
 script = ExtResource("2_vob1e")
+speed = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_cy8ya")
