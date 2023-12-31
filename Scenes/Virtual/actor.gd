@@ -4,18 +4,17 @@ class_name Actor
 const DEFAULT_SPEED = 300.0
 const JUMP_VELOCITY = -550.0
 
+@export var speed = DEFAULT_SPEED
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-#Get if the Actor was on the floor last frame
-var last_floor = false  # Last frame's on-floor state
-
+#Variables used to get data from last frame
+var last_floor = false 
 var last_velocity : Vector2
 
-
+#Signals
 signal hit_body(body) 
-
-@export var speed = DEFAULT_SPEED
 
 func _ready():
 	pass
@@ -24,12 +23,16 @@ func _process(delta):
 	handle_animation(delta)
 
 func _physics_process(delta):
-	# Add the gravity.
+	# The physics is split into multiple segments, to make sure each
+	# inherited scene shares properties without having to write them again and again
 	last_velocity = velocity
+	last_floor = is_on_floor()
+	
 	handle_gravity(delta)
 	handle_physics(delta)
-	last_floor = is_on_floor()
 	move_and_slide()
+	
+	#Handle all the collisions that have happened
 	handle_cols()
 
 func handle_physics(_delta):
@@ -51,9 +54,10 @@ func handle_cols():
 
 func _on_hitbox_body_entered(body):
 	if body != self:
-		print(body, "has been hit!")
 		hit_body.emit(body)
 	pass # Replace with function body.
+
+#These functions are used when one actor "hits" another actor
 
 func take_hit(_hitter):
 	queue_free()

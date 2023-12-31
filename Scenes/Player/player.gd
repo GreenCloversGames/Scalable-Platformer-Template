@@ -7,9 +7,6 @@ class_name Player
 
 @onready var camera :Camera2D = $Camera2D 
 
-
-
-
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
 

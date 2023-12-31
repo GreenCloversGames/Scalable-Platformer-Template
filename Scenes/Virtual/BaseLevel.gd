@@ -1,14 +1,16 @@
 extends Node2D
 class_name BaseLevel
 
-var current_checkpoint:Checkpoint
+@onready var boundry_rect : Rect2i
 
 var level_resource : LevelResource
 var levelscore = 0
+
 var player : Player
+var current_checkpoint:Checkpoint
+
 signal level_ended
 
-@onready var boundry_rect : Rect2i
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var cell_size :Vector2i = $TileMap.tile_set.tile_size
@@ -55,15 +57,20 @@ func kill_player():
 func respawn():
 	if current_checkpoint:
 		player.global_position = current_checkpoint.global_position
+	else:
+		get_tree().reload_current_scene()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
 func _on_tile_map_child_entered_tree(node):
+	# Handle the noeds that are instanced by the tile map.
+	# Potential change - Have them added to the test level instead?
+	
 	if node.is_in_group("interactable"):
 		node.player_touched.connect(on_player_touched.bind(node))
-	elif node.is_in_group("player"):
+	if node.is_in_group("player"):
 		player = node as Player
 		player.player_lost_health.connect(_on_player_lost_health)
 		player.player_lost_all_health.connect(respawn)
