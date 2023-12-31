@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Resources/Scripts/level_collection.gd" id="1_hkkd7"]
 [ext_resource type="PackedScene" uid="uid://t7yg1qyt4ndo" path="res://Scenes/Levels/test_level.tscn" id="1_qgoxd"]
 [ext_resource type="Script" path="res://Resources/Scripts/level_resource.gd" id="2_c5tna"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/test_level_2.tscn" id="3_2fv27"]
+[ext_resource type="PackedScene" uid="uid://8vj0qon54rkc" path="res://Scenes/Levels/test_level_2.tscn" id="3_2fv27"]
 
 [sub_resource type="Resource" id="Resource_bunti"]
 script = ExtResource("2_c5tna")
