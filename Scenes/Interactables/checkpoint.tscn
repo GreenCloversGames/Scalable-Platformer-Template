@@ -34,4 +34,4 @@ script = ExtResource("2_sqdvw")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_w2j4f")
 animation = &"inactive"
-frame_progress = 0.78467
+frame_progress = 0.780051

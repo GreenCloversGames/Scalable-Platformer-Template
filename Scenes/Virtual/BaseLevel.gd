@@ -13,6 +13,8 @@ signal level_ended
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not level_resource:
+		level_resource = LevelResource.new()
 	var cell_size :Vector2i = $TileMap.tile_set.tile_size
 	boundry_rect = Rect2i($TileMap.get_used_rect()).abs()
 #	boundry_rect = boundry_rect.grow_side(SIDE_TOP, 500)
@@ -50,6 +52,7 @@ func activate_checkpoint(node):
 		current_checkpoint.active = false
 	current_checkpoint = node
 	current_checkpoint.active = true
+	save_state()
 
 func kill_player():
 	respawn()
@@ -57,13 +60,29 @@ func kill_player():
 func respawn():
 	if current_checkpoint:
 		player.global_position = current_checkpoint.global_position
+		var copy = duplicate()
+		queue_free()
+		get_parent().add_child(copy)
+		load_state()
 	else:
 		get_tree().reload_current_scene()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func save_state():
+	var collectables = get_tree().get_nodes_in_group("collectable")
+	for collectable in collectables:
+		level_resource.state[collectable] = 1
+	level_resource.state["level_score"] = levelscore
+	if current_checkpoint:
+		level_resource.state["current_checkpoint_name"] = current_checkpoint.get_path()
 
+func load_state():
+	var collectables = get_tree().get_nodes_in_group("collectable")
+	for collectable in collectables:
+		if not level_resource.state.has(collectable):
+			collectable.queue_free()
+	levelscore = level_resource.state["level_score"]
+	if level_resource.state["current_checkpoint_name"]:
+		current_checkpoint = get_node(level_resource.state["current_checkpoint_name"])
 func _on_tile_map_child_entered_tree(node):
 	# Handle the noeds that are instanced by the tile map.
 	# Potential change - Have them added to the test level instead?
