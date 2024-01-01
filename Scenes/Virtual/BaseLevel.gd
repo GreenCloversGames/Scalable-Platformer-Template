@@ -6,7 +6,10 @@ class_name BaseLevel
 var level_resource : LevelResource
 var levelscore = 0
 
+@onready var player_scene = preload("res://Scenes/Player/player.tscn")
+
 var player : Player
+var starting_pos : Vector2
 var current_checkpoint:Checkpoint
 
 signal level_ended
@@ -19,11 +22,13 @@ func _ready():
 	boundry_rect.size *= cell_size
 	boundry_rect.position *= cell_size
 	after_ready.call_deferred()
-	
+
 
 func after_ready():
+	#As the player is added to the tilemap, it needs to wait a frame for 
+	#everything to get ready!
 	player.set_up_camera_limit(boundry_rect)
-
+	starting_pos = player.position
 
 func on_player_touched(node:Interactable):
 	if node is Exit:
@@ -42,6 +47,10 @@ func update_score(value):
 	levelscore += value
 	$LevelUI.update_score(levelscore)
 
+func reset_score():
+	levelscore = 0
+	$LevelUI.update_score(levelscore)
+
 func exit_level():
 	level_ended.emit()
 
@@ -55,10 +64,20 @@ func kill_player():
 	respawn()
 
 func respawn():
+	player.queue_free()
+	player = player_scene.instantiate()
+	$TileMap.add_child(player)
+	player.set_up_camera_limit(boundry_rect)
 	if current_checkpoint:
 		player.global_position = current_checkpoint.global_position
 	else:
-		get_tree().reload_current_scene()
+		player.global_position = starting_pos
+	
+	for collectable in get_tree().get_nodes_in_group("collectable"):
+		#collectable.process_mode = Node.PROCESS_MODE_INHERIT
+		collectable.collected = false
+	reset_score()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
