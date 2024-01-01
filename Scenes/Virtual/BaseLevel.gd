@@ -68,7 +68,7 @@ func activate_checkpoint(node):
 	current_checkpoint.active = true
 
 func kill_player():
-	respawn()
+	respawn.call_deferred()
 
 func respawn():
 	player.queue_free()
