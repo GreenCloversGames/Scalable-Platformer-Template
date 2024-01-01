@@ -2,15 +2,18 @@ extends Node2D
 class_name BaseLevel
 
 @onready var boundry_rect : Rect2i
-
-var level_resource : LevelResource
-var levelscore = 0
-
 @onready var player_scene = preload("res://Scenes/Player/player.tscn")
 
-var player : Player
+var levelscore = 0
+var time_taken = 0
 var starting_pos : Vector2
+
+var level_resource : LevelResource
+var player : Player
+@onready var ui := $LevelUI
+
 var current_checkpoint:Checkpoint
+
 
 signal level_ended
 
@@ -23,6 +26,10 @@ func _ready():
 	boundry_rect.position *= cell_size
 	after_ready.call_deferred()
 
+func _process(delta):
+	time_taken += delta
+	ui.update_time(time_taken)
+	
 
 func after_ready():
 	#As the player is added to the tilemap, it needs to wait a frame for 
@@ -45,11 +52,11 @@ func on_player_touched(node:Interactable):
 
 func update_score(value):
 	levelscore += value
-	$LevelUI.update_score(levelscore)
+	ui.update_score(levelscore)
 
 func reset_score():
 	levelscore = 0
-	$LevelUI.update_score(levelscore)
+	ui.update_score(levelscore)
 
 func exit_level():
 	level_ended.emit()
@@ -74,14 +81,9 @@ func respawn():
 		player.global_position = starting_pos
 	
 	for collectable in get_tree().get_nodes_in_group("collectable"):
-		#collectable.process_mode = Node.PROCESS_MODE_INHERIT
 		collectable.collected = false
 	reset_score()
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 func _on_tile_map_child_entered_tree(node):
 	# Handle the noeds that are instanced by the tile map.
@@ -102,4 +104,4 @@ func _on_hit_body(hitbody:Actor, hitter:Actor):
 	hitter.react_to_hitting(hitbody)
 
 func _on_player_lost_health(_new_health):
-	$LevelUI.lose_health()
+	ui.lose_health()

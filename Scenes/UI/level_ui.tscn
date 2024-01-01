@@ -74,7 +74,6 @@ vertical_alignment = 1
 
 [node name="TimeContainer" type="VBoxContainer" parent="Control/HBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -85,5 +84,8 @@ horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Control/HBoxContainer/TimeContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_gqkha")
 text = "0"
 horizontal_alignment = 1
+vertical_alignment = 1

@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var healthContainer = $Control/HBoxContainer/HealthContainer
 @onready var scoreContainer = $Control/HBoxContainer/ScoreContainer
-@onready var timeContainer = $Control/HBoxContainer/HealthContainer
+@onready var timeContainer = $Control/HBoxContainer/TimeContainer
 # Called when the node enters the scene tree for the first time.
 
 @onready var hearts = healthContainer.get_node("HBoxContainer").get_children()
@@ -25,3 +25,5 @@ func lose_health():
 func update_score(new_score):
 	scoreContainer.get_node("Label2").text = str(new_score)
 
+func update_time(new_time):
+	timeContainer.get_node("Label2").text = String.num(new_time, 2).pad_decimals(2)
