@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cgcxsn1pwxfiy" path="res://Assets/Player/p1_walk/p1_walk11.png" id="12_xmdyi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbkd8"]
-size = Vector2(38, 89)
+size = Vector2(38, 73)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dkb7f"]
 animations = [{
@@ -101,11 +101,12 @@ collision_layer = 10
 collision_mask = 15
 script = ExtResource("2_5gwpl")
 coyote_time_frames = 3
-friction = 0.1
-acceleration = 0.25
+friction = 0.428
+acceleration = 0.715
+jump_height = 175.0
 
 [node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 1.5)
+position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_jbkd8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]

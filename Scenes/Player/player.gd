@@ -10,6 +10,7 @@ class_name Player
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.25
 
+
 var health = 3
 
 var jumping = true
@@ -52,7 +53,7 @@ func handle_physics(_delta):
 		jumping = false
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or coyote):
-		velocity.y = JUMP_VELOCITY
+		velocity.y = jump_vel
 		jumping = true
 		if coyote:
 			coyote = false

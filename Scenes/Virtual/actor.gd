@@ -3,8 +3,15 @@ class_name Actor
 
 const DEFAULT_SPEED = 300.0
 const JUMP_VELOCITY = -550.0
+const  TILESIZE = Vector2(70, 70)
 
 @export var speed = DEFAULT_SPEED
+@export var jump_height = JUMP_VELOCITY:
+	set(value):
+		jump_height = value
+		jump_vel = calculate_jump_velocity(jump_height)
+
+@onready var jump_vel = calculate_jump_velocity(jump_height)
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -15,6 +22,9 @@ var last_velocity : Vector2
 
 #Signals
 signal hit_body(body) 
+
+func calculate_jump_velocity(distance):
+	return -sqrt(2 * gravity * distance)
 
 func _ready():
 	pass
