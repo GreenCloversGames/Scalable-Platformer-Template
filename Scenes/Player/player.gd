@@ -1,7 +1,9 @@
 extends Actor
 class_name Player
 
-@export var coyote_time_frames = 3;
+@export var coyote_time_frames = 6;
+@export var jump_time_frames = 6;
+
 
 #Taken from Kids Can Code - https://kidscancode.org/godot_recipes/4.x/2d/platform_character/index.html
 
@@ -28,7 +30,8 @@ signal player_lost_all_health
 
 func _ready():
 	super()
-	%CoyoteTimer.wait_time = coyote_frames / 60.0
+	%CoyoteTimer.wait_time = coyote_frames / 60.
+	%JumpBufferTimer.wait_time = jump_time_frames / 60.
 	SceneTrainsition.target = self
 
 
@@ -52,29 +55,42 @@ func handle_physics(_delta):
 	if is_on_floor():
 		jumping = false
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or coyote):
-		velocity.y = jump_vel
-		jumping = true
-		if coyote:
-			coyote = false
 	
-	if !is_on_floor() and last_floor and !jumping:
-		coyote = true
-		%CoyoteTimer.start()
-	
+	handle_jump()
 
 	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = lerp(velocity.x, direction * speed, acceleration)
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 
+func handle_jump():
+	if is_on_floor() != last_floor:
+		
+		print(is_on_floor(), last_floor)
+	if Input.is_action_just_pressed("jump"):
+		%JumpBufferTimer.start()
+	
+	if (not %JumpBufferTimer.is_stopped()) and (is_on_floor() or coyote):
+		velocity.y = jump_vel
+		%JumpBufferTimer.stop()
+		jumping = true
+		if coyote:
+			coyote = false
+
+func handle_cols():
+	super()
+	
+	if !is_on_floor() and last_floor and not jumping:
+		coyote = true
+		%CoyoteTimer.start()
+	
+
 func take_hit(hitter):
-	velocity.x = global_position.direction_to(hitter.global_position).x * JUMP_VELOCITY * 3
+	velocity.x = global_position.direction_to(hitter.global_position).x * jump_vel * 3
 	if is_on_floor():
-		velocity.y = JUMP_VELOCITY*.5
+		velocity.y = jump_vel*.5
 	$AnimatedSprite2D.play("hurt")
 	health -= 1
 	player_lost_health.emit(health)
@@ -94,7 +110,8 @@ func _on_coyote_timer_timeout():
 	pass # Replace with function body.
 
 func react_to_hitting(_hitbody):
-	velocity.y = JUMP_VELOCITY
+	# Have the player jump
+	velocity.y = jump_vel
 	jumping = true
 
 

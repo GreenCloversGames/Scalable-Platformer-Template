@@ -2,11 +2,11 @@ extends CharacterBody2D
 class_name Actor
 
 const DEFAULT_SPEED = 300.0
-const JUMP_VELOCITY = -550.0
+const DEFAULT_JUMP_HEIGHT = 2.5
 const  TILESIZE = Vector2(70, 70)
 
 @export var speed = DEFAULT_SPEED
-@export var jump_height = JUMP_VELOCITY:
+@export var jump_height = 2.5:
 	set(value):
 		jump_height = value
 		jump_vel = calculate_jump_velocity(jump_height)
@@ -35,16 +35,17 @@ func _process(delta):
 func _physics_process(delta):
 	# The physics is split into multiple segments, to make sure each
 	# inherited scene shares properties without having to write them again and again
+
 	last_velocity = velocity
 	last_floor = is_on_floor()
 	
 	handle_gravity(delta)
 	handle_physics(delta)
 	move_and_slide()
-	
 	#Handle all the collisions that have happened
 	handle_cols()
 
+	
 func handle_physics(_delta):
 	pass
 

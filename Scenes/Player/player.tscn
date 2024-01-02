@@ -100,7 +100,8 @@ _data = {
 collision_layer = 10
 collision_mask = 15
 script = ExtResource("2_5gwpl")
-coyote_time_frames = 3
+coyote_time_frames = 6
+jump_time_frames = 6
 friction = 0.428
 acceleration = 0.715
 jump_height = 175.0
@@ -121,6 +122,11 @@ drag_horizontal_enabled = true
 
 [node name="CoyoteTimer" type="Timer" parent="Timers" index="0"]
 unique_name_in_owner = true
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="Timers" index="1"]
+unique_name_in_owner = true
+one_shot = true
 
 [node name="Hitbox" parent="." index="4"]
 collision_layer = 10
