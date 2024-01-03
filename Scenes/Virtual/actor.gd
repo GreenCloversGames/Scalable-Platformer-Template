@@ -6,7 +6,7 @@ const DEFAULT_JUMP_HEIGHT = 2.5
 const  TILESIZE = Vector2(70, 70)
 
 @export var speed = DEFAULT_SPEED
-@export var jump_height = 2.5:
+@export_range(0, 300, 1, "suffix:px", "or_greater", "or_less", "hide_slider") var jump_height : int = 2.5:
 	set(value):
 		jump_height = value
 		jump_vel = calculate_jump_velocity(jump_height)
