@@ -104,7 +104,7 @@ coyote_time_frames = 6
 jump_time_frames = 6
 friction = 0.428
 acceleration = 0.715
-jump_height = 175.0
+jump_height = 175
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2(0, 9.5)
@@ -127,6 +127,9 @@ one_shot = true
 [node name="JumpBufferTimer" type="Timer" parent="Timers" index="1"]
 unique_name_in_owner = true
 one_shot = true
+
+[node name="JumpHoldTimer" type="Timer" parent="Timers" index="2"]
+unique_name_in_owner = true
 
 [node name="Hitbox" parent="." index="4"]
 collision_layer = 10

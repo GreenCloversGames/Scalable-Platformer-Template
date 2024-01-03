@@ -50,7 +50,12 @@ func handle_animation(_delta):
 			$AnimatedSprite2D.play("jump")
 		else:
 			$AnimatedSprite2D.play("fall")
-	
+
+func handle_gravity(delta):
+	if velocity.y > 0 and jumping:
+		delta *= 1.5
+	super(delta)
+
 func handle_physics(_delta):
 	if is_on_floor():
 		jumping = false
@@ -66,12 +71,10 @@ func handle_physics(_delta):
 		velocity.x = lerp(velocity.x, 0.0, friction)
 
 func handle_jump():
-	if is_on_floor() != last_floor:
-		
-		print(is_on_floor(), last_floor)
 	if Input.is_action_just_pressed("jump"):
 		%JumpBufferTimer.start()
-	
+	if Input.is_action_just_released("jump") and velocity.y < 0:
+		velocity.y *= 0.5
 	if (not %JumpBufferTimer.is_stopped()) and (is_on_floor() or coyote):
 		velocity.y = jump_vel
 		%JumpBufferTimer.stop()
