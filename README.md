@@ -1,4 +1,3 @@
-![image](https://github.com/GreenCloversGames/Scalable-Platformer-Template/assets/98714227/e4dc8108-c953-44c4-a6b1-5c44e459c0ec)# Scalable Platformer Template
 
 <p align="center"><img src="Marketing/Logo.png"/></p>
 
