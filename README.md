@@ -1,4 +1,4 @@
-# Scalable Platformer Template
+![image](https://github.com/GreenCloversGames/Scalable-Platformer-Template/assets/98714227/e4dc8108-c953-44c4-a6b1-5c44e459c0ec)# Scalable Platformer Template
 
 <p align="center"><img src="Marketing/Logo.png"/></p>
 
@@ -20,11 +20,16 @@ Coyote Time taken from Kids Can Code - <https://kidscancode.org/godot_recipes/4.
 - Base Level
 - Base Enemy
   - Crawler Enemy
+  - **NEW** Flying Enemy
 - Interactables
   - Level Exit
   - Collectables
   - Death Zones
-- Player with basic movement
+  - **NEW** Crate
+- Player with basic movement including:
+  - Coyote Frames
+  - Jump Buffer
+  - Jump height depends on how long you press jump for
 - Collisions between Enemies and Player
 - Basic UI
 
