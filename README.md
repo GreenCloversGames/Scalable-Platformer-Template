@@ -65,11 +65,9 @@ Make sure to add a player and a level exit!
 
 #### Step 5
 
-![](Screenshots/SPT_NEW_LEVEL_5.png "image title")
+![image](https://github.com/GreenCloversGames/Scalable-Platformer-Template/assets/98714227/1b5351af-f2aa-48ed-9b85-637029f45364)
 
-Change the "Next Level Path" property to be either the next level or the end of your game!
-
-Then save and run to try out your new level!
+To add your levels to the level select, as well as order your levels, you need to edit the "level_collection.tres" resource, which contains the resource of your level. In the future, you will be able to find this in the main scene inspector, but for now you can access it from the file handler. Once you have it, you can add "MetaLevelResource"s, which contain the name of the level, the scene and level data. 
 
 ### How To Make It Your Own
 
